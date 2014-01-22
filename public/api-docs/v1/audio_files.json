@@ -8,7 +8,7 @@
       "path": "api/items/{item_id}/audio_files/{id}",
       "operations": [
         {
-          "summary": "Get Audio File",
+          "summary": "Get an audio file",
           "nickname": "Api::V1::AudioFiles#show",
           "parameters": [
             {

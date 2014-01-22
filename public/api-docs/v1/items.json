@@ -8,7 +8,7 @@
       "path": "api/items",
       "operations": [
         {
-          "summary": "Get items from collection",
+          "summary": "Get items ",
           "nickname": "Api::V1::Items#index",
           "parameters": [
             {
@@ -27,16 +27,9 @@
       "path": "api/items/{id}",
       "operations": [
         {
-          "summary": "retreive an individual item associated with a collection.",
+          "summary": "get a specific item",
           "nickname": "Api::V1::Items#show",
           "parameters": [
-            {
-              "paramType": "path",
-              "name": "collection_id",
-              "type": "integer",
-              "description": "Collection ID",
-              "required": true
-            },
             {
               "paramType": "path",
               "name": "id",
@@ -53,7 +46,7 @@
       "path": "api/collections/{collection_id}/items",
       "operations": [
         {
-          "summary": "retreive list of items that make up a collection",
+          "summary": "get items from a collection",
           "nickname": "Api::V1::Items#index",
           "parameters": [
             {
@@ -72,7 +65,7 @@
       "path": "api/collections/{collection_id}/items/{id}",
       "operations": [
         {
-          "summary": "retreive an individual item associated with a collection.",
+          "summary": "get an specific item from a collection",
           "nickname": "Api::V1::Items#show",
           "parameters": [
             {

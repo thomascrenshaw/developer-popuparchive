@@ -8,7 +8,7 @@
       "path": "api/collections/{collection_id}/people",
       "operations": [
         {
-          "summary": "retreive the people (contributors) that are associated with a collection.",
+          "summary": "Get collection contributors",
           "nickname": "Api::V1::People#index",
           "parameters": [
             {
@@ -27,7 +27,7 @@
       "path": "api/collections/{collection_id}/people/{id}",
       "operations": [
         {
-          "summary": "retreive an individual associated with a collection.",
+          "summary": "Get single contributor",
           "nickname": "Api::V1::People#show",
           "parameters": [
             {

@@ -4,36 +4,28 @@
   "basePath": "http://developer.popuparchive.org/",
   "apis": [
     {
-      "path": "api-docs/v1/audio_files.{format}",
-      "description": ""
+      "path": "api-docs/v1/audio_files.{format}"
     },
     {
-      "path": "api-docs/v1/transcripts.{format}",
-      "description": "Transcript"
+      "path": "api-docs/v1/transcripts.{format}"
     },
     {
-      "path": "api-docs/v1/entities.{format}",
-      "description": "Entities"
+      "path": "api-docs/v1/entities.{format}"
     },
     {
-      "path": "api-docs/v1/contributions.{format}",
-      "description": "Contributions"
+      "path": "api-docs/v1/contributions.{format}"
     },
     {
-      "path": "api-docs/v1/items.{format}",
-      "description": "Item"
+      "path": "api-docs/v1/items.{format}"
     },
     {
-      "path": "api-docs/v1/public_collections.{format}",
-      "description": "Public Collections"
+      "path": "api-docs/v1/public_collections.{format}"
     },
     {
-      "path": "api-docs/v1/people.{format}",
-      "description": "Person"
+      "path": "api-docs/v1/people.{format}"
     },
     {
-      "path": "api-docs/v1/collections.{format}",
-      "description": "Collections"
+      "path": "api-docs/v1/collections.{format}"
     }
   ],
   "info": { 
@@ -42,6 +34,6 @@
     "termsOfServiceUrl": "https://www.popuparchive.org/terms",
     "contact": "info@popuparchive.org",
     "license": "Don't Steal and Be Nice To Others",
-    "licenseURL": "https://www.popuparchive.org"
+    "licenseURL": "https://www.popuparchive.org/"
   }
 }
