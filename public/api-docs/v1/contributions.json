@@ -1,0 +1,34 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://www.popuparchive.org/",
+  "resourcePath": "contributions",
+  "apis": [
+    {
+      "path": "api/items/{item_id}/contributions/{id}",
+      "operations": [
+        {
+          "summary": "Get collection contributors",
+          "nickname": "Api::V1::Contributions#show",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "collection_id",
+              "type": "integer",
+              "description": "Collection ID",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Item ID",
+              "required": true
+            }
+          ],
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

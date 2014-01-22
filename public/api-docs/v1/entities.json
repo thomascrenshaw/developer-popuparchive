@@ -1,0 +1,27 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://www.popuparchive.org/",
+  "resourcePath": "entities",
+  "apis": [
+    {
+      "path": "api/items/{item_id}/entities/{id}",
+      "operations": [
+        {
+          "summary": "Get an items entities",
+          "nickname": "Api::V1::Entities#show",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "entities",
+              "type": "integer",
+              "description": "Entities ID",
+              "required": true
+            }
+          ],
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

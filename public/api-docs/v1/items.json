@@ -1,0 +1,98 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "https://www.popuparchive.org/",
+  "resourcePath": "items",
+  "apis": [
+    {
+      "path": "api/items",
+      "operations": [
+        {
+          "summary": "Get items from collection",
+          "nickname": "Api::V1::Items#index",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "item_id",
+              "type": "integer",
+              "description": "Item ID",
+              "required": true
+            }
+          ],
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "api/items/{id}",
+      "operations": [
+        {
+          "summary": "retreive an individual item associated with a collection.",
+          "nickname": "Api::V1::Items#show",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "collection_id",
+              "type": "integer",
+              "description": "Collection ID",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Item ID",
+              "required": true
+            }
+          ],
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "api/collections/{collection_id}/items",
+      "operations": [
+        {
+          "summary": "retreive list of items that make up a collection",
+          "nickname": "Api::V1::Items#index",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "collection_id",
+              "type": "integer",
+              "description": "Collection ID",
+              "required": true
+            }
+          ],
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "api/collections/{collection_id}/items/{id}",
+      "operations": [
+        {
+          "summary": "retreive an individual item associated with a collection.",
+          "nickname": "Api::V1::Items#show",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "collection_id",
+              "type": "integer",
+              "description": "Collection ID",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Item ID",
+              "required": true
+            }
+          ],
+          "method": "get"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://developer.popuparchive.org/",
+  "apis": [
+    {
+      "path": "api-docs/v1/audio_files.{format}",
+      "description": ""
+    },
+    {
+      "path": "api-docs/v1/transcripts.{format}",
+      "description": "Transcript"
+    },
+    {
+      "path": "api-docs/v1/entities.{format}",
+      "description": "Entities"
+    },
+    {
+      "path": "api-docs/v1/contributions.{format}",
+      "description": "Contributions"
+    },
+    {
+      "path": "api-docs/v1/items.{format}",
+      "description": "Item"
+    },
+    {
+      "path": "api-docs/v1/public_collections.{format}",
+      "description": "Public Collections"
+    },
+    {
+      "path": "api-docs/v1/people.{format}",
+      "description": "Person"
+    },
+    {
+      "path": "api-docs/v1/collections.{format}",
+      "description": "Collections"
+    }
+  ],
+  "info": { 
+    "title": "Pop Up Archive API Sandbox",
+    "description": "This is a nice place to play with the Pop Up Archive API",
+    "termsOfServiceUrl": "https://www.popuparchive.org/terms",
+    "contact": "info@popuparchive.org",
+    "license": "Don't Steal and Be Nice To Others",
+    "licenseURL": "https://www.popuparchive.org"
+  }
+}
