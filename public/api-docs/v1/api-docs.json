@@ -4,6 +4,9 @@
   "basePath": "https://developer.popuparchive.org/",
   "apis": [
     {
+      "path": "api-docs/v1/searches.{format}"
+    },
+    {
       "path": "api-docs/v1/audio_files.{format}"
     },
     {
