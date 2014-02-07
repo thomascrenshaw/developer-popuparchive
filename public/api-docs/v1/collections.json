@@ -9,7 +9,7 @@
       "operations": [
         {
           "summary": "Get Collections (Current User)",
-          "nickname": "Api::V1::Collections#index",
+          "nickname": "api_collections",
           "method": "get"
         }
       ]
@@ -19,7 +19,7 @@
       "operations": [
         {
           "summary": "Get single collection",
-          "nickname": "Api::V1::Collections#show",
+          "nickname": "api_collection",
           "notes": "Although this is a valid endpoint and is the more RESTful endpoint, it is recommended that you use the search endpoint with the collection_id filter when retreiving the items associated with a collection",
           "parameters": [
             {
