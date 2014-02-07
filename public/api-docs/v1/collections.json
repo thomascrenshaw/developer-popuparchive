@@ -20,6 +20,7 @@
         {
           "summary": "Get single collection",
           "nickname": "Api::V1::Collections#show",
+          "notes": "Although this is a valid endpoint and is the more RESTful endpoint, it is recommended that you use the search endpoint with the collection_id filter when retreiving the items associated with a collection",
           "parameters": [
             {
               "paramType": "path",
