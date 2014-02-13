@@ -4,32 +4,14 @@
   "basePath": "https://developer.popuparchive.org/",
   "apis": [
     {
-      "path": "api-docs/v1/searches.{format}"
-    },
-    {
-      "path": "api-docs/v1/audio_files.{format}"
-    },
-    {
-      "path": "api-docs/v1/transcripts.{format}"
-    },
-    {
-      "path": "api-docs/v1/entities.{format}"
-    },
-    {
-      "path": "api-docs/v1/contributions.{format}"
+      "path": "api-docs/v1/collections.{format}"
     },
     {
       "path": "api-docs/v1/items.{format}"
     },
     {
-      "path": "api-docs/v1/public_collections.{format}"
-    },
-    {
-      "path": "api-docs/v1/people.{format}"
-    },
-    {
-      "path": "api-docs/v1/collections.{format}"
-    }
+      "path": "api-docs/v1/searches.{format}"
+    } 
   ],
   "info": { 
     "title": "Pop Up Archive API Sandbox",

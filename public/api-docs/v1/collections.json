@@ -8,31 +8,566 @@
       "path": "api/collections",
       "operations": [
         {
-          "summary": "Get Collections (Current User)",
+          "summary": "Get authorized user's private collections",
+          "notes": "This endpoint will return all private collections associated with the authenticated user. NOTE: Authentication is required for this endpoint.",
           "nickname": "api_collections",
-          "method": "get"
+          "method": "GET",
+          "responseClass": "List[Collections]",
+          "preliminaryCallbacks": [
+            null
+          ],
+          "requestSignature": "token",
+          "responseClass": "List[Collections]"
         }
       ]
     },
     {
-      "path": "api/collections/{id}",
+      "path": "api/collections/public",
+      "operations": [
+        {
+          "summary": "Get public collections",
+          "notes": "This endpoint will return all Pop Up Archive public collections.",
+          "nickname": "api_public_collections",
+          "method": "GET",
+          "responseClass": "List[Public Collections]",
+          "preliminaryCallbacks": [
+            null
+          ],
+          "requestSignature": "token",
+          "responseClass": "List[Public Collections]"
+        }
+      ]
+    },
+    {
+      "path": "api/collections/{collection_id}",
       "operations": [
         {
           "summary": "Get single collection",
+          "notes": "This endpoint will return the medatdata for a single collection. NOTE: Authentication is required for private collections",
           "nickname": "api_collection",
-          "notes": "Although this is a valid endpoint and is the more RESTful endpoint, it is recommended that you use the search endpoint with the collection_id filter when retreiving the items associated with a collection",
           "parameters": [
             {
               "paramType": "path",
-              "name": "id",
+              "name": "collection_id",
               "type": "integer",
               "description": "Collection ID",
               "required": true
             }
           ],
-          "method": "get"
+          "method": "GET",
+          "responseClass": "List[Collections]",
+          "preliminaryCallbacks": [
+            null
+          ],
+          "requestSignature": "token",
+          "responseClass": "List[Collections]"
+        }
+      ]
+    },
+    {
+      "path": "api/collections/{collection_id}/items/{item_id}",
+      "operations": [
+        {
+          "summary": "Get a specific item from a collection",
+          "notes": "This endpoint will return the metadata for an individual audio asset",
+          "nickname": "api_collection_item",
+          "responseClass": "List[Items]",
+          "method": "GET",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "collection_id",
+              "type": "integer",
+              "description": "Collection ID",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "item_id",
+              "type": "integer",
+              "description": "Item ID",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "api/collections/{collection_id}/people/{person_id}",
+      "operations": [
+        {
+          "summary": "Get single contributor",
+          "notes": "This endpoint will return the metadata for a single contributor",
+          "nickname": "api_collection_person",
+          "method": "GET",
+          "responseClass": "List[Persons]",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "collection_id",
+              "type": "integer",
+              "description": "Collection ID",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "person_id",
+              "type": "integer",
+              "description": "Person ID",
+              "required": true
+            }
+          ]
         }
       ]
     }
-  ]
+  ],
+  "models": {
+    "Collections": {
+      "id": "Collections",
+      "required": [
+        "id",
+        "title",
+        "description",
+        "items_visible_by_default",
+        "urls",
+        "storage"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "unique identifier for the Collection"
+        },
+        "title": {
+          "type": "string",
+          "description": "title of the Collection"
+        },
+        "description": {
+          "type": "string",
+          "description": "description of the Collection"
+        },
+        "items_visible_by_default": {
+          "type": "boolean",
+          "description": "True == Public, False == Private"
+        },
+        "urls": {
+          "$ref": "URLs"
+        },
+        "storage": {
+          "type": "string",
+          "description": "location where the Collection items are stored"
+        }
+      }
+    },
+    "URLs": {
+      "id": "URLs",
+      "properties": {
+        "self": {
+          "type": "string"
+        }
+      }
+    },
+    "Public Collections": {
+      "id": "Public Collections",
+      "required": [
+        "copy_media",
+        "created_at",
+        "default_storage_id",
+        "id",
+        "items_visible_by_default",
+        "title",
+        "upload_storage_id"
+      ],
+      "properties": {
+        "copy_media": {
+          "type": "boolean",
+          "description": "unique identifier for the Collection"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "Date and time the collection was created"
+        },
+        "creator_id": {
+          "type": "integer",
+          "description": "Unique identifier for the creator of the collection"
+        },
+        "default_storage_id": {
+          "type": "integer",
+          "description": "Unique identifier for the deafult storage"
+        },
+        "deleted_at": {
+          "type": "date",
+          "description": "Date and time the collection was deleted"
+        },
+        "description": {
+          "type": "string",
+          "description": "Collection description"
+        },
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the Collection"
+        },
+        "items_visible_by_default": {
+          "type": "boolean",
+          "description": "True == Public, False == Private"
+        },
+        "title": {
+          "type": "date",
+          "description": "Collection title"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "Date and time the Collection was last updated"
+        },
+        "upload_storage_id": {
+          "type": "integer",
+          "description": "Unique identifier for the upload storage location"
+        }
+      }
+    },
+    "Persons": {
+      "id": "Persons",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "unique identifier for the contributor"
+        },
+        "name": {
+          "type": "string",
+          "description": "name of the contributor"
+        }
+      }
+    },
+    "Contributions": {
+      "id": "Contributions",
+      "required": [
+        
+      ],
+      "properties": {
+        "Persons": {
+          "$ref": "Persons"
+        },
+        "role": {
+          "type": "string",
+          "description": "Role within the creation"
+        },
+        "id": {
+          "type": "integer",
+          "description": "id"
+        }
+      }
+    },
+    "Items": {
+      "id": "Items",
+      "required": [
+        "id",
+        "date_created",
+        "collection_id",
+        "collection_title",
+        "token",
+        "updated_at",
+        "date_added",
+        "storage"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "unique identifier for the item"
+        },
+        "title": {
+          "type": "string",
+          "description": "The item title"
+        },
+        "description": {
+          "type": "string",
+          "description": "The item description"
+        },
+        "date_created": {
+          "type": "string",
+          "description": "The date that the item was created"
+        },
+        "identifier": {
+          "type": "null",
+          "description": "UNKNOWN"
+        },
+        "collection_id": {
+          "type": "integer",
+          "description": "Unique identifier for the applicable collection"
+        },
+        "collection_title": {
+          "type": "string",
+          "description": "Title for the applicable collection"
+        },
+        "episode_title": {
+          "type": "null",
+          "description": "Title of the item"
+        },
+        "series_title": {
+          "type": "null",
+          "description": "Title of the series"
+        },
+        "date_broadcast": {
+          "type": "null",
+          "description": "Date that audio was broadcast"
+        },
+        "physical_format": {
+          "type": "null",
+          "description": "Physical format (e.g. tape)"
+        },
+        "digital_format": {
+          "type": "null",
+          "description": "Digital format (e.g. 'wav','mp3')"
+        },
+        "digital_location": {
+          "type": "null",
+          "description": "Location of the digital file"
+        },
+        "physical_location": {
+          "type": "null",
+          "description": "Locatino of the physical media"
+        },
+        "music_sound_used": {
+          "type": "null",
+          "description": "Title of any music used within the audio"
+        },
+        "date_peg": {
+          "type": "string",
+          "description": "Commonly recognized point in time such as a holiday or political event"
+        },
+        "rights": {
+          "type": "string",
+          "description": "Rights that govern the audio asset"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "Duration of the audio asset"
+        },
+        "tags": {
+          "items": {
+            "type": "string",
+            "description": "0"
+          },
+          "type": "array",
+          "description": "Array of tags associated with an audio item"
+        },
+        "notes": {
+          "type": "null",
+          "description": "Notes associated with the audio asset"
+        },
+        "token": {
+          "type": "string",
+          "description": "UNKNOWN"
+        },
+        "language": {
+          "type": "null",
+          "description": "Primary language of the audio asset"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "Date and time that the item was last updated"
+        },
+        "producers": {
+          "type": "array",
+          "description": "Array of producers associated with the audio item"
+        },
+        "interviewers": {
+          "type": "array",
+          "description": "Array of interviewers associated with the audio item"
+        },
+        "interviewees": {
+          "items": {
+            "type": "string",
+            "description": "0"
+          },
+          "type": "array",
+          "description": "Array of interviewees associated with the audio item"
+        },
+        "creators": {
+          "type": "array",
+          "description": "Array of creators associated with the audio item"
+        },
+        "hosts": {
+          "type": "array",
+          "description": "Array of hosts associated with the audio item"
+        },
+        "guests": {
+          "type": "array",
+          "description": "Array of guests associated with the audio item"
+        },
+        "date_added": {
+          "type": "string",
+          "description": "Date that the item was added to Pop Up Archive"
+        },
+        "storage": {
+          "type": "string",
+          "description": "Storage location"
+        },
+        "extra": {
+          "type": "object",
+          "description": "UNKNOWN",
+          "properties": {
+            "digital_location": {
+              "type": "string",
+              "description": "digital_location"
+            }
+          }
+        },
+        "urls": {
+          "type": "object",
+          "description": "urls",
+          "properties": {
+            "self": {
+              "type": "string",
+              "description": "URI of the individual item NOTE: This is not currently accurate"
+            }
+          }
+        },
+        "highlights": {
+          "type": "object",
+          "description": "highlights",
+          "UNKNOWN": {
+            "type": "string",
+            "description": "UNKNOWN"
+          }
+        },
+        "audio_files": {
+          "items": {
+            "type": "object",
+            "description": "",
+            "properties": {
+              "transcoded_at": {
+                "type": "string",
+                "description": "transcoded_at"
+              },
+              "tasks": {
+                "items": {
+                  "type": "object",
+                  "description": "0",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "status"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "type"
+                    },
+                    "description": {
+                      "type": "number",
+                      "description": "id"
+                    },
+                    "name": {
+                      "type": "null",
+                      "description": "name"
+                    }
+                  }
+                },
+                "type": "array",
+                "description": "tasks"
+              },
+              "url": {
+                "items": {
+                  "type": "string",
+                  "description": "0"
+                },
+                "type": "array",
+                "description": "url"
+              },
+              "filename": {
+                "type": "string",
+                "description": "filename"
+              },
+              "duration": {
+                "type": "null",
+                "description": "duration"
+              },
+              "transcript": {
+                "items": {
+                  "type": "object",
+                  "description": "0",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "description": "text"
+                    },
+                    "start_time": {
+                      "type": "number",
+                      "description": "start_time"
+                    },
+                    "end_time": {
+                      "type": "number",
+                      "description": "end_time"
+                    },
+                    "description": {
+                      "type": "number",
+                      "description": "id"
+                    }
+                  }
+                },
+                "type": "array",
+                "description": "transcript"
+              },
+              "description": {
+                "type": "number",
+                "description": "id"
+              }
+            }
+          },
+          "type": "array",
+          "description": "audio files associated with the item"
+        },
+        "entities": {
+          "items": {
+            "type": "object",
+            "description": "0",
+            "properties": {
+              "category": {
+                "type": "string",
+                "description": "category"
+              },
+              "name": {
+                "type": "string",
+                "description": "name"
+              },
+              "is_confirmed": {
+                "type": "boolean",
+                "description": "is_confirmed"
+              },
+              "extra": {
+                "type": "object",
+                "description": "extra",
+                "properties": {
+                  "original": {
+                    "type": "string",
+                    "description": "original"
+                  }
+                }
+              },
+              "score": {
+                "type": "number",
+                "description": "score"
+              },
+              "identifier": {
+                "type": "null",
+                "description": "identifier"
+              },
+              "type": {
+                "type": "null",
+                "description": "type"
+              },
+              "description": {
+                "type": "number",
+                "description": "id"
+              }
+            }
+          },
+          "type": "array",
+          "description": "entities"
+        }
+      }
+    }
+  }
 }
