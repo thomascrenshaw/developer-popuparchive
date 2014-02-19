@@ -1,7 +1,7 @@
 {
   "apiVersion": "1.0",
   "swaggerVersion": "1.2",
-  "basePath": "https://developer.popuparchive.org/",
+  "basePath": "http://localhost:9292/",
   "apis": [
     {
       "path": "api-docs/v1/collections.{format}"
@@ -17,8 +17,6 @@
     "title": "Pop Up Archive API Sandbox",
     "description": "This is a nice place to play with the Pop Up Archive API",
     "termsOfServiceUrl": "https://www.popuparchive.org/terms",
-    "contact": "info@popuparchive.org",
-    "license": "Don't Steal and Be Nice To Others",
-    "licenseURL": "https://www.popuparchive.org/"
+    "contact": "admin@popuparchive.org"
   }
 }

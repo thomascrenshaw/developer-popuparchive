@@ -3,6 +3,10 @@
   "swaggerVersion": "1.2",
   "basePath": "https://www.popuparchive.org/",
   "resourcePath": "items",
+  "produces": [
+    "application/json",
+    "*/*"
+  ], 
   "apis": [
     {
       "path": "api/items/{item_id}/audio_files/{audio_file_id}",
@@ -21,7 +25,7 @@
             },
             {
               "paramType": "path",
-              "name": "audio_id",
+              "name": "audio_file_id",
               "type": "integer",
               "description": "Audio File ID",
               "required": true
@@ -47,7 +51,7 @@
             },
             {
               "paramType": "path",
-              "name": "audio_file",
+              "name": "audio_file_id",
               "type": "integer",
               "description": "Audio File ID",
               "required": true
