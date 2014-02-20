@@ -16,8 +16,7 @@
           "preliminaryCallbacks": [
             null
           ],
-          "requestSignature": "token",
-          "responseClass": "List[Collections]"
+          "requestSignature": "token"
         }
       ]
     },
@@ -33,8 +32,7 @@
           "preliminaryCallbacks": [
             null
           ],
-          "requestSignature": "token",
-          "responseClass": "List[Public Collections]"
+          "requestSignature": "token"
         }
       ]
     },
@@ -59,8 +57,7 @@
           "preliminaryCallbacks": [
             null
           ],
-          "requestSignature": "token",
-          "responseClass": "List[Collections]"
+          "requestSignature": "token"
         }
       ]
     },
@@ -127,7 +124,6 @@
       "required": [
         "id",
         "title",
-        "description",
         "items_visible_by_default",
         "urls",
         "storage"
@@ -135,15 +131,15 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "unique identifier for the Collection"
+          "description": "unique identifier for the collection"
         },
         "title": {
           "type": "string",
-          "description": "title of the Collection"
+          "description": "title of the collection"
         },
         "description": {
           "type": "string",
-          "description": "description of the Collection"
+          "description": "description of the collection"
         },
         "items_visible_by_default": {
           "type": "boolean",
@@ -155,14 +151,6 @@
         "storage": {
           "type": "string",
           "description": "location where the Collection items are stored"
-        }
-      }
-    },
-    "URLs": {
-      "id": "URLs",
-      "properties": {
-        "self": {
-          "type": "string"
         }
       }
     },
@@ -180,10 +168,10 @@
       "properties": {
         "copy_media": {
           "type": "boolean",
-          "description": "unique identifier for the Collection"
+          "description": "True==; False=="
         },
         "created_at": {
-          "type": "string",
+          "type": "dateTime",
           "description": "Date and time the collection was created"
         },
         "creator_id": {
@@ -195,7 +183,7 @@
           "description": "Unique identifier for the deafult storage"
         },
         "deleted_at": {
-          "type": "date",
+          "type": "dateTime",
           "description": "Date and time the collection was deleted"
         },
         "description": {
@@ -211,11 +199,11 @@
           "description": "True == Public, False == Private"
         },
         "title": {
-          "type": "date",
+          "type": "string",
           "description": "Collection title"
         },
         "updated_at": {
-          "type": "string",
+          "type": "dateTime",
           "description": "Date and time the Collection was last updated"
         },
         "upload_storage_id": {
@@ -225,6 +213,7 @@
       }
     },
     "Persons": {
+      "description": "Metadata for an individual associated with the item",
       "id": "Persons",
       "required": [
         "id",
@@ -233,30 +222,33 @@
       "properties": {
         "id": {
           "type": "integer",
-          "description": "unique identifier for the contributor"
+          "description": "Contributor's unique identifier"
         },
         "name": {
           "type": "string",
-          "description": "name of the contributor"
+          "description": "Contributor's name"
         }
       }
     },
     "Contributions": {
       "id": "Contributions",
       "required": [
-        
+        "id",
+        "role",
+        "person"
       ],
       "properties": {
-        "Persons": {
-          "$ref": "Persons"
+        "id": {
+          "type": "integer",
+          "description": "Contribution's unique identifier"
         },
         "role": {
           "type": "string",
-          "description": "Role within the creation"
+          "description": "Role this person had in creating the item (interviewer, interviewee, producer, etc)"
         },
-        "id": {
-          "type": "integer",
-          "description": "id"
+        "person": {
+          "description": "One or more people associated with the item (See Persons Object for more details)",
+          "$ref": "Persons"
         }
       }
     },
@@ -264,73 +256,75 @@
       "id": "Items",
       "required": [
         "id",
+        "title",
         "date_created",
         "collection_id",
         "collection_title",
         "token",
         "updated_at",
         "date_added",
-        "storage"
+        "storage",
+        "urls"
       ],
       "properties": {
         "id": {
           "type": "integer",
-          "description": "unique identifier for the item"
+          "description": "The item's unique identifier"
         },
         "title": {
           "type": "string",
-          "description": "The item title"
+          "description": "The item's title"
         },
         "description": {
           "type": "string",
-          "description": "The item description"
+          "description": "Description of the item"
         },
         "date_created": {
-          "type": "string",
-          "description": "The date that the item was created"
+          "type": "date",
+          "description": "The date that the original item was created as an audio asset"
         },
         "identifier": {
-          "type": "null",
-          "description": "UNKNOWN"
+          "type": "integer",
+          "description": "Unique identifier for the audio file"
         },
         "collection_id": {
           "type": "integer",
-          "description": "Unique identifier for the applicable collection"
+          "description": "Unique identifier of the parent collection"
         },
         "collection_title": {
           "type": "string",
-          "description": "Title for the applicable collection"
+          "description": "Title of the parent collection"
         },
         "episode_title": {
-          "type": "null",
-          "description": "Title of the item"
+          "type": "string",
+          "description": "Episode title"
         },
         "series_title": {
-          "type": "null",
-          "description": "Title of the series"
+          "type": "string",
+          "description": "Series title"
         },
         "date_broadcast": {
-          "type": "null",
-          "description": "Date that audio was broadcast"
+          "type": "date",
+          "description": "The date that the original item was broadcast"
         },
         "physical_format": {
-          "type": "null",
-          "description": "Physical format (e.g. tape)"
+          "type": "string",
+          "description": "Physical format of the item (e.g. tape)"
         },
         "digital_format": {
-          "type": "null",
-          "description": "Digital format (e.g. 'wav','mp3')"
+          "type": "string",
+          "description": "Digital format of the item (e.g. 'wav','mp3')"
         },
         "digital_location": {
-          "type": "null",
-          "description": "Location of the digital file"
+          "type": "string",
+          "description": "Location of the original digital file"
         },
         "physical_location": {
-          "type": "null",
-          "description": "Locatino of the physical media"
+          "type": "string",
+          "description": "Physical location of the physical media"
         },
         "music_sound_used": {
-          "type": "null",
+          "type": "string",
           "description": "Title of any music used within the audio"
         },
         "date_peg": {
@@ -339,233 +333,310 @@
         },
         "rights": {
           "type": "string",
-          "description": "Rights that govern the audio asset"
+          "description": "The applicable digital rights for the item"
         },
         "duration": {
           "type": "integer",
-          "description": "Duration of the audio asset"
+          "description": "Duration of the audio item"
         },
         "tags": {
           "items": {
             "type": "string",
-            "description": "0"
+            "description": "individual tag"
           },
           "type": "array",
           "description": "Array of tags associated with an audio item"
         },
         "notes": {
-          "type": "null",
+          "type": "string",
           "description": "Notes associated with the audio asset"
         },
         "token": {
           "type": "string",
-          "description": "UNKNOWN"
+          "description": "Internal identifier ({ITEM_TITLE}.HASH.{SITENAME})"
         },
         "language": {
-          "type": "null",
+          "type": "string",
           "description": "Primary language of the audio asset"
         },
         "updated_at": {
-          "type": "string",
+          "type": "dateTime",
           "description": "Date and time that the item was last updated"
         },
         "producers": {
-          "type": "array",
-          "description": "Array of producers associated with the audio item"
+          "items": {
+            "type": "string",
+            "description": "Single producer"
+          },
+          "type": "array\n",
+          "description": "Array of producers"
         },
         "interviewers": {
+          "items": {
+            "type": "string",
+            "description": "Single interviewer"
+          },
           "type": "array",
-          "description": "Array of interviewers associated with the audio item"
+          "description": "Array of interviewers"
         },
         "interviewees": {
           "items": {
             "type": "string",
-            "description": "0"
+            "description": "Single interviewee"
           },
           "type": "array",
-          "description": "Array of interviewees associated with the audio item"
+          "description": "Array of interviewees"
         },
         "creators": {
+          "items": {
+            "type": "string",
+            "description": "Single creator"
+          },
           "type": "array",
-          "description": "Array of creators associated with the audio item"
+          "description": "Array of creators"
         },
         "hosts": {
+          "items": {
+            "type": "string",
+            "description": "Single host"
+          },
           "type": "array",
-          "description": "Array of hosts associated with the audio item"
+          "description": "Array of hosts"
         },
         "guests": {
+          "items": {
+            "type": "string",
+            "description": "Single guest"
+          },
           "type": "array",
-          "description": "Array of guests associated with the audio item"
+          "description": "Array of guests"
         },
         "date_added": {
-          "type": "string",
+          "type": "dateTime",
           "description": "Date that the item was added to Pop Up Archive"
         },
         "storage": {
           "type": "string",
-          "description": "Storage location"
+          "description": "Storage location (e.g. InternetArchive, AWS)"
         },
         "extra": {
           "type": "object",
-          "description": "UNKNOWN",
+          "description": "User entered fields created during CSV import",
           "properties": {
             "digital_location": {
               "type": "string",
-              "description": "digital_location"
+              "description": "Individual item"
             }
           }
         },
         "urls": {
-          "type": "object",
-          "description": "urls",
-          "properties": {
-            "self": {
-              "type": "string",
-              "description": "URI of the individual item NOTE: This is not currently accurate"
-            }
-          }
+          "$ref": "URLs",
+          "description": "see URLs object for more details"
         },
         "highlights": {
-          "type": "object",
-          "description": "highlights",
-          "UNKNOWN": {
-            "type": "string",
-            "description": "UNKNOWN"
-          }
+          "$ref": "Highlights"
         },
         "audio_files": {
-          "items": {
-            "type": "object",
-            "description": "",
-            "properties": {
-              "transcoded_at": {
-                "type": "string",
-                "description": "transcoded_at"
-              },
-              "tasks": {
-                "items": {
-                  "type": "object",
-                  "description": "0",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "status"
-                    },
-                    "type": {
-                      "type": "string",
-                      "description": "type"
-                    },
-                    "description": {
-                      "type": "number",
-                      "description": "id"
-                    },
-                    "name": {
-                      "type": "null",
-                      "description": "name"
-                    }
-                  }
-                },
-                "type": "array",
-                "description": "tasks"
-              },
-              "url": {
-                "items": {
-                  "type": "string",
-                  "description": "0"
-                },
-                "type": "array",
-                "description": "url"
-              },
-              "filename": {
-                "type": "string",
-                "description": "filename"
-              },
-              "duration": {
-                "type": "null",
-                "description": "duration"
-              },
-              "transcript": {
-                "items": {
-                  "type": "object",
-                  "description": "0",
-                  "properties": {
-                    "text": {
-                      "type": "string",
-                      "description": "text"
-                    },
-                    "start_time": {
-                      "type": "number",
-                      "description": "start_time"
-                    },
-                    "end_time": {
-                      "type": "number",
-                      "description": "end_time"
-                    },
-                    "description": {
-                      "type": "number",
-                      "description": "id"
-                    }
-                  }
-                },
-                "type": "array",
-                "description": "transcript"
-              },
-              "description": {
-                "type": "number",
-                "description": "id"
-              }
-            }
-          },
-          "type": "array",
-          "description": "audio files associated with the item"
+          "$ref": "Audio Files"
         },
         "entities": {
+          "$ref": "Entities"
+        },
+        "contributions": {
+          "$ref": "Contributions"
+        }
+      }
+    },
+    "URLs": {
+      "id": "URLs",
+      "required": [
+        "self"
+      ],
+      "properties": {
+        "self": {
+          "type": "string",
+          "description": "endpoint path"
+        }
+      }
+    },
+    "Audio Files": {
+      "id": "Audio Files",
+      "description": "Metadata for the item's associated audio file(s)",
+      "required": [
+        "id",
+        "filename",
+        "url"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier of the audio file"
+        },
+        "filename": {
+          "type": "string",
+          "description": "Audio filename"
+        },
+        "transcode_at": {
+          "type": "string",
+          "format": "dateTime",
+          "description": "Date and time that the audio was transcoded"
+        },
+        "duration": {
+          "type": "integer",
+          "description": "length, in seconds, of the audio file"
+        },
+        "url": {
           "items": {
-            "type": "object",
-            "description": "0",
-            "properties": {
-              "category": {
-                "type": "string",
-                "description": "category"
-              },
-              "name": {
-                "type": "string",
-                "description": "name"
-              },
-              "is_confirmed": {
-                "type": "boolean",
-                "description": "is_confirmed"
-              },
-              "extra": {
-                "type": "object",
-                "description": "extra",
-                "properties": {
-                  "original": {
-                    "type": "string",
-                    "description": "original"
-                  }
-                }
-              },
-              "score": {
-                "type": "number",
-                "description": "score"
-              },
-              "identifier": {
-                "type": "null",
-                "description": "identifier"
-              },
-              "type": {
-                "type": "null",
-                "description": "type"
-              },
-              "description": {
-                "type": "number",
-                "description": "id"
-              }
-            }
+            "type": "string",
+            "description": "single file URL"
           },
           "type": "array",
-          "description": "entities"
+          "description": "Absolute URLs to the associated audio files"
+        },
+        "transcript": {
+          "$ref": "Transcript",
+          "description": "see Transcript object for more details"
+        },
+        "tasks": {
+          "$ref": "Tasks",
+          "description": "see Tasks object for more details"
+        }
+      }
+    },
+    "Transcript": {
+      "id": "Transcript",
+      "description": "Transcript parts extracted from the audio file",
+      "required": [
+        "id",
+        "start_time",
+        "text",
+        "end_time"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the audio file transcript"
+        },
+        "start_time": {
+          "type": "integer",
+          "description": "time, in seconds, where this text is said"
+        },
+        "text": {
+          "type": "string",
+          "description": "transcript text that occurs between the given start_time and end_time"
+        },
+        "end_time": {
+          "type": "integer",
+          "description": "time, in seconds, where the text ends"
+        }
+      }
+    },
+    "Tasks": {
+      "id": "Tasks",
+      "description": "Tasks associated with the audio file",
+      "required": [
+        "id",
+        "status",
+        "name",
+        "type"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier of the task"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the task"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the task (e.g. created, working, complete, etc)"
+        },
+        "type": {
+          "type": "string",
+          "description": "type of task (e.g. upload, copy, transcribe, analyze, analyze_audio, etc)"
+        },
+        "transcript_url": {
+          "type": "string",
+          "description": "Amara transcript URL"
+        },
+        "edit_transcript_url": {
+          "type": "string",
+          "description": "Amara edit transcript URL"
+        }
+      }
+    },
+    "Entities": {
+      "id": "Entities",
+      "description": "Automatically generated tags",
+      "required": [
+        "id",
+        "name",
+        "is_confirmed",
+        "category",
+        "score"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique entity identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the entity"
+        },
+        "is_confirmed": {
+          "type": "boolean",
+          "description": "True == a human has confirmed that this entity applies to the item; False  == the entity has not been confirmed"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "Identifier can indicate what generated the entitiy (e.g. OpenCalais)"
+        },
+        "score": {
+          "type": "integer",
+          "description": "calculated strength of the relationship between the entity and the item"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of entity (e.g. Person, Organization, Location, etc)"
+        },
+        "category": {
+          "type": "string",
+          "description": "Entity category (e.g. topic, tag, entity, etc)"
+        },
+        "extra": {
+          "type": "multiple",
+          "description": "The extra object provides additional details related to a particular entity such as the original name or OpenCalais parameters"
+        }
+      }
+    },
+    "Highlights": {
+      "id": "Highlights",
+      "description": "Related audio files",
+      "required": [
+        "id",
+        "url",
+        "filename",
+        "transcript"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier of the highlighted audio file"
+        },
+        "url": {
+          "type": "string",
+          "description": "URL of the highlighted audio file"
+        },
+        "filename": {
+          "type": "string",
+          "description": "Filename of the highlighted audio file"
+        },
+        "transcript": {
+          "description": "Transcript of the highlighted audio file",
+          "$ref": "Transcript"
         }
       }
     }
