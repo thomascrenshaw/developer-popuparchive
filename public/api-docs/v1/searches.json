@@ -229,15 +229,15 @@
         },
         "entries": {
           "items": {
-            "$ref": "Date Histogram-Array"
+            "$ref": "Date Histogram Entries"
           },
           "type": "array",
           "description": "array of the histogram values"
         }
       }
     },
-    "Date Histogram-Array": {
-      "id": "Date Histogram-Array",
+    "Date Histogram Entries": {
+      "id": "Date Histogram Entries",
       "properties": {
         "time": {
           "type": "float",
@@ -265,15 +265,15 @@
         },
         "entries": {
           "items": {
-            "$ref": "Histogram-Array"
+            "$ref": "Histogram Entries"
           },
           "type": "array",
           "description": "array of the histogram values"
         }
       }
     },
-    "Histogram-Array": {
-      "id": "Histogram-Array",
+    "Histogram Entries": {
+      "id": "Histogram Entries",
       "properties": {
         "key": {
           "type": "integer",
@@ -315,15 +315,15 @@
         },
         "terms": {
           "items": {
-            "$ref": "Terms-Array"
+            "$ref": "Terms Items"
           },
           "type": "array",
           "description": "Term that appears within the result set"
         }
       }
     },
-    "Terms-Array": {
-      "id": "Terms-Array",
+    "Terms Items": {
+      "id": "Terms Items",
       "properties": {
         "term": {
           "type": "string",
